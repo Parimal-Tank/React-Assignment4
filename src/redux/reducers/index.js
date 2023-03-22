@@ -66,28 +66,11 @@ const Product = (state = initProduct, action) => {
         
     case DELETE_CART:
         // Store Total Cart Quantity 
-               
-        console.log('This is quentity from the  cart' , action.payload)
 
         const quantitys = state.Carts[action.payload].quantity
-        console.log('action.payload: ', action.payload, state.Carts);
-        console.log("state.Carts[action.payload].id",state.Carts[action.payload].id)
-
-        const temp = state.Carts.filter(item => {
-            console.log('item.id !== state.Carts[action.payload].id: ', item.id );
-            // return item.id !== state.Carts[action.payload].id
-       })
-       console.log('Delete' , temp)
-
-       
         return{
             ...state,
-            numberCart:state.numberCart - quantitys,
-            // If we delete any items from cart, so this filter return cart items accepts the deleted item.
-            // Carts: state.Carts.filter(item => {
-            //      return item.id !== state.Carts[action.payload].id
-            // })
-          
+            numberCart:state.numberCart - quantitys    
         }
     case INCREASE_QUANTITY :
         // To Increase the Quantity of Items
