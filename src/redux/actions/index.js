@@ -1,6 +1,6 @@
 import product from  '../../product.json';
 
-// For Count the Product Quality
+// For Count the Product Quantity
 export const INCREASE_QUANTITY = 'INCREASE_QUANTITY';
 export const DECREASE_QUANTITY = 'DECREASE_QUANTITY';
 

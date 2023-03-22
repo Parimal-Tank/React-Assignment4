@@ -17,17 +17,19 @@ const initProduct = {
 const Product = (state = initProduct, action) => {
   
   switch (action.type) {
+    // Get All Products from the data
     case GET_ALL_PRODUCT:
       return {
         ...state,
         products: action.payload,
       }
     case GET_NUMBER_CART:
+        // return the total number of Items in Cart
         return{
             ...state
         }
     case ADD_CART:
-    
+                // Check if the cart is empty, then add items in the cart
             if(state.numberCart === 0){
                 const cart = {
                     id: action.payload.id,
@@ -37,6 +39,7 @@ const Product = (state = initProduct, action) => {
                 }
                 state.Carts.push(cart);
             }else{
+                // IF cart have items then print the items
                 let check = false;
 
                 state.Carts.map((item , key) => {
@@ -45,7 +48,7 @@ const Product = (state = initProduct, action) => {
                         check=true;
                      }
                 });
-
+                // If the cart have items and we need to add more items
                 if(!check){
                     let _cart = {
                         id:action.payload.id,
@@ -62,15 +65,32 @@ const Product = (state = initProduct, action) => {
             }
         
     case DELETE_CART:
+        // Store Total Cart Quantity 
+               
+        console.log('This is quentity from the  cart' , action.payload)
+
         const quantitys = state.Carts[action.payload].quantity
+        console.log('action.payload: ', action.payload, state.Carts);
+        console.log("state.Carts[action.payload].id",state.Carts[action.payload].id)
+
+        const temp = state.Carts.filter(item => {
+            console.log('item.id !== state.Carts[action.payload].id: ', item.id );
+            // return item.id !== state.Carts[action.payload].id
+       })
+       console.log('Delete' , temp)
+
+       
         return{
             ...state,
             numberCart:state.numberCart - quantitys,
-            Carts: state.Carts.filter(item => {
-                 return item.id !== state.Carts[action.payload].id
-            })
+            // If we delete any items from cart, so this filter return cart items accepts the deleted item.
+            // Carts: state.Carts.filter(item => {
+            //      return item.id !== state.Carts[action.payload].id
+            // })
+          
         }
     case INCREASE_QUANTITY :
+        // To Increase the Quantity of Items
         state.numberCart++;
         state.Carts[action.payload].quantity++;
         return{
@@ -78,12 +98,25 @@ const Product = (state = initProduct, action) => {
         }
     case DECREASE_QUANTITY :
         const quantity = state.Carts[action.payload].quantity;
-
-        if(quantity > 1){
+        console.log('quantity: ', quantity);
+        // Check if the Cart have more than 0 Items
+        if(quantity > 0){
             state.numberCart--;
             state.Carts[action.payload].quantity--;
         }
+        console.log("updated",state.Carts[action.payload].quantity)
 
+        if(state.Carts[action.payload].quantity === undefined || state.Carts[action.payload].quantity === 0){
+            return{
+                ...state,
+                Carts:   state.Carts.filter(item => {
+                    // console.log('item.id !== state.Carts[action.payload].id: ', item.id );
+                    return item.id !== state.Carts[action.payload].id
+               })
+            }
+        }
+        
+       
         return{
             ...state
         }

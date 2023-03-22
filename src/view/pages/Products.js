@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Button, Card, CardText, CardTitle, Col, Row } from "reactstrap";
-import { AddCart, actFetchProductsRequest } from "../redux/actions/index";
+import { AddCart, actFetchProductsRequest } from "../../redux/actions/index";
 
 const Products = (props) => {
   const { products } = props.products;

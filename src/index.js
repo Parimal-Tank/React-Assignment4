@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import store from './redux/stores';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Invoice from './components/Invoice';
+import Invoice from './view/pages/Invoice';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
