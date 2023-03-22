@@ -121,7 +121,7 @@ const Cart = (props, args) => {
           )}
         </ModalBody>
         <ModalFooter>
-          <Button color="warning">
+          <Button color="warning" disabled={ ListCart?.length ===0 ? true : false }>
             <Link to="/Invoice" className="text-dark text-decoration-none">
               Generate Invoice
             </Link>

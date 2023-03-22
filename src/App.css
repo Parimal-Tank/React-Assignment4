@@ -5,3 +5,7 @@
    width: 35px;
    height: 20px;
 }
+
+.not-allowed {
+   cursor: not-allowed;
+ }
