@@ -1,3 +1,4 @@
+// import data from the product.json file
 import product from  '../../product.json';
 
 // For Count the Product Quantity
@@ -22,7 +23,6 @@ export const actFetchProductsRequest = () => {
 }
 
 /* INCREASE_QUANTITY */
-
 export const IncreaseQuantity = (payload) => {
     return {
         type : 'INCREASE_QUANTITY',
